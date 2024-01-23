@@ -1,0 +1,7 @@
+[core]
+	editor = nano -w
+[init]
+	defaultBranch = main
+[user]
+	name = Juhan Jin
+	email = juhanjin.me@gmail.com
