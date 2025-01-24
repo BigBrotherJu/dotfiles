@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+brew install google-chrome
+brew install visual-studio-code
+brew install 1password
+
+brew install git
+git clone --bare https://github.com/BigBrotherJu/dotfiles ~/.dotfiles
+alias gitd='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+gitd checkout
+gitd config --local status.showUntrackedFiles no
+
+brew bash
+echo /usr/local/bin/bash | sudo tee -a /etc/shells
+chsh -s /usr/local/bin/bash
+brew install kitty
+
+brew install karabiner-elements
+brew install snipaste
+brew install qq
+brew install wechat
+brew install parallels
+brew install pdf-expert
+brew install maczip
+brew install calibre
+
+brew install nutstore
+brew install hiddenbar
+
+brew tap homebrew/cask-fonts
+brew install font-symbols-only-nerd-font
+
+brew install joshuto
+brew install exiftool
+brew install bat
+brew install trash
+brew install file-formula
+brew install less
+
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
+
+brew install neofetch
+brew install openssh
