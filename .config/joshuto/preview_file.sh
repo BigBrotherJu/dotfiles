@@ -41,6 +41,10 @@ IFS=$'\n'
 # * pipefail causes a pipeline to fail also if a command other than the last one fails
 set -o noclobber -o noglob -o nounset -o pipefail
 
+# Enable exiftool large file support
+shopt -s expand_aliases
+alias exiftool='exiftool -api largefilesupport=1'
+
 FILE_PATH=""
 PREVIEW_WIDTH=10
 PREVIEW_HEIGHT=10
@@ -96,11 +100,15 @@ handle_extension() {
             exit 1 ;;
 
             ## OpenDocument
-        odt|ods|odp|sxw)
+        odt|sxw)
             ## Preview as text conversion
             odt2txt "${FILE_PATH}" && exit 0
             ## Preview as markdown conversion
             pandoc -s -t markdown -- "${FILE_PATH}" && exit 0
+            exit 1 ;;
+        ods|odp)
+            ## Preview as text conversion (unsupported by pandoc for markdown)
+            odt2txt "${FILE_PATH}" && exit 0
             exit 1 ;;
 
             ## XLSX
@@ -172,10 +180,11 @@ handle_mime() {
             exit 1 ;;
 
             ## Text
-        text/* | */xml)
+        text/* | */xml) # bat theme changed
             bat --color=always --paging=never \
                 --style=plain \
                 --terminal-width="${PREVIEW_WIDTH}" \
+                --theme=GitHub \
                 "${FILE_PATH}" && exit 0
             cat "${FILE_PATH}" && exit 0
             exit 1 ;;
@@ -190,7 +199,7 @@ handle_mime() {
             ## Image
         image/*)
             ## Preview as text conversion
-            exit 0
+            exit 0 # changed
             exiftool "${FILE_PATH}" && exit 0
             exit 1 ;;
 

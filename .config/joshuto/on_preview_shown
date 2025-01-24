@@ -22,7 +22,6 @@ function image {
 
 case "$mimetype" in
 	image/*)
-		echo $PREVIEW_X_COORD $PREVIEW_Y_COORD $PREVIEW_WIDTH $PREVIEW_HEIGHT >> /tmp/joshuto_test ;
 		image "${FILE_PATH}"
 		;;
 	*)
