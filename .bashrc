@@ -1,6 +1,6 @@
-[[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --attach=none
+# [[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --attach=none
 
-neofetch
+fastfetch
 
 eval "$(/usr/local/bin/brew shellenv)"
 # eval "$(fzf --bash)"
@@ -75,5 +75,5 @@ function j() {
 alias gitd='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias n=nvim
 
-[[ ${BLE_VERSION-} ]] && ble-attach
+# [[ ${BLE_VERSION-} ]] && ble-attach
 # eval "$(oh-my-posh init bash)"
